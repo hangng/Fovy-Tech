@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="explore">Explore</string>
+    <string name="explore_id">Explore</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorite_id">Favorite</string>
+    <string name="choose_category">Choose Category!</string>
+    <string name="perfect_way_to_start_your_day">Perfect day to start your day</string>
+    <string name="choose_your_coffee">Choose your coffee</string>
+
+</resources>

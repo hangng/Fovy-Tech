@@ -40,8 +40,6 @@ public class CoffeeCategoryAdapter extends RecyclerView.Adapter<CoffeeCategoryAd
         final CoffeeCategory coffeeCategory = mAryLst.get(position);
         int itemType = holder.getItemViewType();
 
-        Log.i("TAG","checking onBindViewHolder");
-
         VHTitle vhTitle = (VHTitle) holder;
         vhTitle.mTvTitle.setText(coffeeCategory.getTitle());
 //            vhTitle.mIvItem.setBackground(mContext.getResources().getDrawable(iEducation.getImgTitle()));
@@ -58,7 +56,6 @@ public class CoffeeCategoryAdapter extends RecyclerView.Adapter<CoffeeCategoryAd
 
     @Override
     public int getItemCount() {
-        Log.i("TAG","checking getItemCount = " + mAryLst.size());
         return mAryLst.size();
     }
 

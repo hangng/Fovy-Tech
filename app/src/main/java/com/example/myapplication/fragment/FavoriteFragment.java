@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,18 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CoffeeAdapter;
 import com.example.myapplication.adapter.CoffeeCategoryAdapter;
+import com.example.myapplication.adapter.CoffeeFavAdapter;
 import com.example.myapplication.component.FrBase;
 import com.example.myapplication.component.InfoUtil;
 import com.example.myapplication.component.NoScrollGridLayoutManager;
 import com.example.myapplication.datahelper.CoffeeDataHelper;
+import com.example.myapplication.model.Coffee;
 import com.example.myapplication.model.CoffeeCategory;
 
+import java.lang.reflect.Array;
+import java.time.chrono.MinguoDate;
 import java.util.ArrayList;
 
-public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, CoffeeCategoryAdapter.Listener  {
+public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, CoffeeCategoryAdapter.Listener, CoffeeFavAdapter.Listener {
     private final String SAVE_DATA_STATE = "SAVE_DATA_STATE";
     private RecyclerView mRvFavorite;
-    private CoffeeAdapter mAdpCoffee;
+    private CoffeeFavAdapter mAdpCoffee;
     private GridLayoutManager mGlMgr;
     private CoffeeDataHelper mDataHelper;
     private ArrayList<CoffeeCategory> mAryCoffeeCategory = new ArrayList<>();
@@ -57,6 +63,16 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
             mDataHelper = new CoffeeDataHelper();
         }
 
+        ArrayList<Coffee> aryCoff = new ArrayList<>();
+
+        for (Coffee coffee : InfoUtil.getInstance().getCoffeeFav()) {
+            if (coffee.isFavorite()) {
+                aryCoff.add(new Coffee(coffee.getTitle(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite()));
+            }
+        }
+
+        mDataHelper.setCoffeeFav(aryCoff);
+
 
     }
 
@@ -72,13 +88,12 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
     private void initComponents() {
         mRvFavorite = mRootView.findViewById(R.id.rv_favorite);
         mGlMgr = new NoScrollGridLayoutManager(mContext, 2);
-        mAdpCoffee = new CoffeeAdapter(mContext, mDataHelper.getCoffeeFav(), this);
+        mAdpCoffee = new CoffeeFavAdapter(mContext, mDataHelper.getCoffeeFav(), this);
         mRvFavorite.setLayoutManager(mGlMgr);
         mRvFavorite.setAdapter(mAdpCoffee);
 
-        mAdpCoffee.notifyDataSetChanged();
 
-        Log.i("TAG","checking size = " + InfoUtil.getInstance().getCoffee().size());
+        mAdpCoffee.notifyDataSetChanged();
     }
 
     @Override
@@ -93,7 +108,16 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
 
     @Override
     public void onFavClick(int iPosition) {
+        Coffee coffee = mDataHelper.getCoffeeLst().get(iPosition);
+        if (coffee.isFavorite()) {
+            coffee.setFavorite(false);
+        } else {
+            coffee.setFavorite(true);
+        }
+
+        mAdpCoffee.notifyDataSetChanged();
+
+//        InfoUtil.getInstance().getCoffee
 
     }
-
 }

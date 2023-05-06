@@ -1,6 +1,7 @@
 package com.example.myapplication.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.example.myapplication.component.InfoUtil;
 import com.example.myapplication.datahelper.CoffeeDataHelper;
 import com.example.myapplication.model.Coffee;
 
+import java.util.ArrayList;
+
 public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, CoffeeCategoryAdapter.Listener {
 
 
@@ -28,6 +31,8 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
     private LinearLayoutManager mLlMgr;
     private GridLayoutManager mGlMgr;
     private CoffeeDataHelper mDataHelper;
+    private ArrayList<Coffee> mAryCoffee = new ArrayList<>();
+
 
     public static ExploreFragment newInstance() {
         Bundle args = new Bundle();
@@ -55,6 +60,15 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
             mDataHelper = new CoffeeDataHelper();
         }
 
+        Log.i("TAG", "checking onCreate");
+
+
+
+        mAryCoffee.add(new Coffee("Teh", "", "item 1", "", "", false));
+        mAryCoffee.add(new Coffee("Teh Ice", "", "item 2", "", "", false));
+        mAryCoffee.add(new Coffee("Teh Hot", "", "item 3", "", "", false));
+        mAryCoffee.add(new Coffee("Teh Warm", "", "item 4", "", "", false));
+        mAryCoffee.add(new Coffee("Teh Warm", "", "item 4", "", "", false));
 
     }
 
@@ -69,23 +83,23 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
 
     private void initComponents() {
 
+        mDataHelper.setCoffeeLst(mAryCoffee);
         mRvBody = mRootView.findViewById(R.id.rv_body);
         mGlMgr = new NoScrollGridLayoutManager(mContext, 2);
         mAdpCoffee = new CoffeeAdapter(mContext, mDataHelper.getCoffeeLst(), this);
         mRvBody.setLayoutManager(mGlMgr);
         mRvBody.setAdapter(mAdpCoffee);
 
-        mAdpCoffee.notifyDataSetChanged();
-
         mRvHeader = mRootView.findViewById(R.id.rv_header);
-        mLlMgr = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false);
+        mLlMgr = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
 
         mAdpCatCoffee = new CoffeeCategoryAdapter(mContext, mDataHelper.getCoffeeCategory(), this);
         mRvHeader.setLayoutManager(mLlMgr);
         mRvHeader.setAdapter(mAdpCatCoffee);
 
-        mAdpCatCoffee.notifyDataSetChanged();
 
+        mAdpCatCoffee.notifyDataSetChanged();
+        mAdpCoffee.notifyDataSetChanged();
     }
 
 
@@ -109,6 +123,17 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
             coffee.setFavorite(true);
         }
 
+
+        mDataHelper.getCoffeeFav().clear();
+
+//        ArrayList<Coffee> coff = new ArrayList<>();
+//
+            for(Coffee cof: mDataHelper.getCoffeeLst()){
+                Log.i("TAG", "checking title = " + cof.getTitle() + " | fav = " + cof.isFavorite());
+
+            }
+
+        InfoUtil.getInstance().setCoffeeFav(mDataHelper.getCoffeeLst());
         InfoUtil.getInstance().setCoffee(mDataHelper.getCoffeeLst());
 
         mAdpCoffee.notifyDataSetChanged();

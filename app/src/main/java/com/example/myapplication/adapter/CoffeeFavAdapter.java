@@ -3,12 +3,10 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,13 +19,12 @@ import com.example.myapplication.model.Coffee;
 import java.util.ArrayList;
 
 
-public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder> {
+public class CoffeeFavAdapter extends RecyclerView.Adapter<CoffeeFavAdapter.ViewHolder> {
     private ArrayList<Coffee> mAryLst = new ArrayList<>();
     private Context mContext;
     private Listener mCallBack;
 
-
-    public CoffeeAdapter(Context context, ArrayList<Coffee> aryLst, Listener callBack) {
+    public CoffeeFavAdapter(Context context, ArrayList<Coffee> aryLst, Listener callBack) {
         mAryLst = aryLst;
         mContext = context;
         mCallBack = callBack;
@@ -69,12 +66,6 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
         });
 
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        return mAryLst.get(position).getSectionId();
-    }
-
     @Override
     public int getItemCount() {
         return mAryLst.size();

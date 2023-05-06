@@ -1,5 +1,7 @@
 package com.example.myapplication.datahelper;
 
+import android.util.Log;
+
 import com.example.myapplication.model.Coffee;
 import com.example.myapplication.model.CoffeeCategory;
 
@@ -15,18 +17,11 @@ public class CoffeeDataHelper implements Serializable {
     private ArrayList<CoffeeCategory> mAryCoffeeCategory = new ArrayList<>();
 
     public ArrayList<Coffee> getCoffeeLst() {
-
-        mAryCoffee.add(new Coffee("Teh", "", "item 1", "", "", false));
-        mAryCoffee.add(new Coffee("Teh Ice", "", "item 2", "", "", false));
-        mAryCoffee.add(new Coffee("Teh Hot", "", "item 3", "", "", false));
-        mAryCoffee.add(new Coffee("Teh Warm", "", "item 4", "", "", false));
-        mAryCoffee.add(new Coffee("Teh Warm", "", "item 4", "", "", false));
+        Log.i("TAG", "checking getCoffeeLst");
         return mAryCoffee;
     }
 
     public void setCoffeeLst(ArrayList<Coffee> aryCoffee) {
-        mAryCoffee.add(new Coffee("All", "", "", "", "", false));
-
         this.mAryCoffee = aryCoffee;
     }
 

@@ -16,7 +16,10 @@ import com.example.myapplication.fragment.ExploreFragment;
 import com.example.myapplication.fragment.FavoriteFragment;
 import com.example.myapplication.fragment.OnDataChangeListener;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.io.FileWriter;
 
 public class MainActivity extends AcBase implements View.OnClickListener {
 
@@ -84,5 +87,7 @@ public class MainActivity extends AcBase implements View.OnClickListener {
 
         super.onBackPressed();
     }
+
+
 
 }

@@ -42,7 +42,10 @@ public class AcBase extends AppCompatActivity implements View.OnClickListener, O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        InfoUtil.setInfoUtil((InfoUtil) savedInstanceState.getSerializable(INFOUTIL_TAG));
+        if(savedInstanceState !=null){
+            InfoUtil.setInfoUtil((InfoUtil) savedInstanceState.getSerializable(INFOUTIL_TAG));
+        }
+
 
     }
 

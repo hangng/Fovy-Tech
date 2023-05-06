@@ -6,10 +6,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class InfoUtil implements Serializable {
-
+    private static final long serialVersionUID = -3665285664982467575L;
 
     private static InfoUtil mInfoUtil;
     private ArrayList<Coffee> aryCoffee;
+    private ArrayList<Coffee> aryCoffeeFav;
 
     public static InfoUtil getInstance() {
         if (mInfoUtil == null) {
@@ -23,6 +24,14 @@ public class InfoUtil implements Serializable {
     }
 
 
+    public ArrayList<Coffee> getCoffeeFav() {
+        return aryCoffeeFav;
+    }
+
+    public void setCoffeeFav(ArrayList<Coffee> aryCoffee) {
+        this.aryCoffeeFav = aryCoffee;
+    }
+
     public ArrayList<Coffee> getCoffee() {
         return aryCoffee;
     }
@@ -30,4 +39,6 @@ public class InfoUtil implements Serializable {
     public void setCoffee(ArrayList<Coffee> aryCoffee) {
         this.aryCoffee = aryCoffee;
     }
+
+
 }

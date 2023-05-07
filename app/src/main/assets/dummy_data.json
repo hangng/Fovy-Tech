@@ -1,0 +1,97 @@
+{
+  "coffee_category": [
+    {
+      "id": "1",
+      "name": "Espresso"
+    },
+    {
+      "id": "2",
+      "name": "Cappuccino"
+    },
+    {
+      "id": "3",
+      "name": "Latte"
+    },
+    {
+      "id": "4",
+      "name": "Americano"
+    },
+    {
+      "id": "5",
+      "name": "Mocha"
+    },
+    {
+      "id": "6",
+      "name": "Macchiato"
+    }
+  ],
+  "coffee_data": [
+    {
+      "id": "1",
+      "category_id": "1",
+      "serve": "1",
+      "name": "Espresso Shot",
+      "time": "5 min",
+      "ingredients": "1 shot of espresso",
+      "instructions": "Brew a shot of espresso and enjoy!",
+      "description": "A classic Italian coffee that's simple, strong and perfect for a quick pick-me-up.",
+      "url_link": "https://www.vitacup.com/cdn/shop/articles/s-1920x1080-BlogHeroImage-ExtraShot-Espresso-v1.jpg?v=1673627433"
+
+    },
+    {
+      "id": "2",
+      "category_id": "2",
+      "serve": "2",
+      "name": "Cappuccino",
+      "time": "10 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp sugar",
+      "instructions": "Brew a shot of espresso, heat the milk and sugar in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A delicious and creamy Italian coffee that's perfect for a lazy morning or afternoon treat.",
+      "url_link": "https://s1.1zoom.me/b5353/731/Coffee_Cappuccino_Cup_561287_1920x1080.jpg"
+    },
+    {
+      "id": "3",
+      "category_id": "3",
+      "serve": "3",
+      "name": "Vanilla Latte",
+      "time": "15 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp vanilla syrup",
+      "instructions": "Brew a shot of espresso, heat the milk and vanilla syrup in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A sweet and creamy coffee that's perfect for anyone with a sweet tooth. The vanilla flavor adds a delicious twist to the classic latte.",
+      "url_link": "https://i0.wp.com/kaylaskitchandfix.com/wp-content/uploads/2020/03/VanillaLatte.png?resize=720%2C900&ssl=1"
+    },
+    {
+      "id": "4",
+      "category_id": "4",
+      "serve": "4",
+      "name": "Americano",
+      "time": "5 min",
+      "ingredients": "1 shot of espresso, hot water",
+      "instructions": "Brew a shot of espresso and pour it into a cup, add hot water and enjoy.",
+      "description": "A simple coffee that's perfect for anyone who loves the taste of espresso but wants a milder flavor. The hot water dilutes the espresso, creating a smooth and delicious coffee.",
+      "url_link": "https://www.fnb.co.id/wp-content/uploads/2023/03/Americano-Coffee-1920-x-1080-px.jpg"
+    },
+    {
+      "id": "5",
+      "category_id": "5",
+      "serve": "5",
+      "name": "Mocha",
+      "time": "15 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp cocoa powder, 1 tbsp sugar",
+      "instructions": "Brew a shot of espresso, heat the milk, cocoa powder and sugar in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A decadent and indulgent coffee that's perfect for anyone who loves chocolate. The rich and creamy mocha is the perfect treat for a cold winter's day.",
+      "url_link": "https://i0.wp.com/www.caffecoffea.com/wp-content/uploads/2015/02/Espresso-Mocha-2.jpg"
+    } ,
+    {
+      "id": "6",
+      "category_id": "5",
+      "serve": "6",
+      "name": "Green Tea Mocha",
+      "time": "20 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp cocoa powder, 1 tbsp sugar, 1 tbsp green tea ",
+      "instructions": "Brew a shot of espresso, heat the milk, cocoa powder and sugar in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A decadent and indulgent coffee that's perfect for anyone who loves chocolate. The rich and creamy mocha is the perfect treat for a cold winter's day.",
+      "url_link": "https://popmenucloud.com/cdn-cgi/image/width=1920,height=1920,format=auto,fit=scale-down/lzaqjwcu/0e24f347-bc1d-4da4-a96d-b2a609040d21.jpg"
+    }
+  ]
+}

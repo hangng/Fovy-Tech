@@ -1,21 +1,22 @@
 package com.example.myapplication.model;
 
-public class CoffeeCategory {
+import java.io.Serializable;
 
-    private String msTitle, msImg;
+public class CoffeeCategory implements Serializable {
 
+    private String id;
+    private String name;
 
-
-    public CoffeeCategory(String title,String img) {
-        this.msTitle = title;
-        this.msImg = img;
+    public CoffeeCategory(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public String getTitle() {
-        return msTitle;
+    public String getId() {
+        return id;
     }
 
-    public String getImg() {
-        return msImg;
+    public String getName() {
+        return name;
     }
 }

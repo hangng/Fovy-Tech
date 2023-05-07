@@ -7,5 +7,9 @@
     <string name="choose_category">Choose Category!</string>
     <string name="perfect_way_to_start_your_day">Perfect day to start your day</string>
     <string name="choose_your_coffee">Choose your coffee</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="serves">serves</string>
+    <string name="my_favorite_recipe">My Favorite Recipe</string>
 
 </resources>

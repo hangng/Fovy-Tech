@@ -1,72 +1,54 @@
 package com.example.myapplication.model;
 
-public class Coffee {
+import java.io.Serializable;
 
-    public static int CAT_HEADER = 0;
-    public static int CAT_BODY = 1;
-
-
-    private String msTitle, msTime, msDescription, msIngredients, msInstructions;
+public class Coffee implements Serializable {
+    private static final long serialVersionUID = -4763567154698548274L;
+    private String name, time, description, ingredients, instructions, category_id, serve, url_link;
     private boolean mbFavorite;
     private int miSectionId;
 
 
-    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite) {
-        this.msTitle = title;
-        this.msTime = time;
-        this.msDescription = description;
-        this.msIngredients = ingredients;
-        this.msInstructions = instructions;
-        this.mbFavorite = favorite;
+    public Coffee() {
+
     }
 
+    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite, String imgUrl) {
+        this.name = title;
+        this.time = time;
+        this.description = description;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.mbFavorite = favorite;
+        this.url_link = imgUrl;
+    }
 
     public int getSectionId() {
         return miSectionId;
     }
 
-    public void setSectionId(int sectionId) {
-        this.miSectionId = sectionId;
+    public String getCatId() {
+        return category_id;
     }
 
-    public String getTitle() {
-        return msTitle;
-    }
-
-    public void setTitle(String title) {
-        this.msTitle = title;
+    public String getName() {
+        return name;
     }
 
     public String getTime() {
-        return msTime;
-    }
-
-    public void setTime(String time) {
-        this.msTime = time;
+        return time;
     }
 
     public String getDescription() {
-        return msDescription;
-    }
-
-    public void setDescription(String description) {
-        this.msDescription = description;
+        return description;
     }
 
     public String getIngredients() {
-        return msIngredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.msIngredients = ingredients;
+        return ingredients;
     }
 
     public String getInstructions() {
-        return msInstructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.msInstructions = instructions;
+        return instructions;
     }
 
     public boolean isFavorite() {
@@ -75,5 +57,13 @@ public class Coffee {
 
     public void setFavorite(boolean favorite) {
         this.mbFavorite = favorite;
+    }
+
+    public String getServe() {
+        return serve;
+    }
+
+    public String getUrl() {
+        return url_link;
     }
 }

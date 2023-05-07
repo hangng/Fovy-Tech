@@ -2,6 +2,7 @@ package com.example.myapplication.adapter;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.model.CoffeeCategory;
+
 import java.util.ArrayList;
 
 public class CoffeeCategoryAdapter extends RecyclerView.Adapter<CoffeeCategoryAdapter.ViewHolder> {
     private ArrayList<CoffeeCategory> mAryLst;
     private Context mContext;
     private Listener mCallBack;
+    private int mSelectPosition = -1;
 
     public CoffeeCategoryAdapter(Context context, ArrayList<CoffeeCategory> aryLst, Listener callBack) {
         mAryLst = aryLst;
@@ -41,8 +45,18 @@ public class CoffeeCategoryAdapter extends RecyclerView.Adapter<CoffeeCategoryAd
         int itemType = holder.getItemViewType();
 
         VHTitle vhTitle = (VHTitle) holder;
-        vhTitle.mTvTitle.setText(coffeeCategory.getTitle());
-//            vhTitle.mIvItem.setBackground(mContext.getResources().getDrawable(iEducation.getImgTitle()));
+        vhTitle.mTvTitle.setText(coffeeCategory.getName());
+        if (mSelectPosition == -1) {
+            mSelectPosition = 0;
+            vhTitle.mTvTitle.setTypeface(null, Typeface.BOLD);
+            vhTitle.mTvTitle.setTextColor(mContext.getColor(R.color.brown));
+        } else if (mSelectPosition == holder.getAdapterPosition()) {
+            vhTitle.mTvTitle.setTypeface(null, Typeface.BOLD);
+            vhTitle.mTvTitle.setTextColor(mContext.getColor(R.color.brown));
+        } else {
+            vhTitle.mTvTitle.setTextColor(mContext.getColor(R.color.black));
+            vhTitle.mTvTitle.setTypeface(null, Typeface.NORMAL);
+        }
         vhTitle.mRlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,4 +98,8 @@ public class CoffeeCategoryAdapter extends RecyclerView.Adapter<CoffeeCategoryAd
         void onHeaderClick(int iPosition);
     }
 
+
+    public void setSelectPosition(int selectPosition) {
+        this.mSelectPosition = selectPosition;
+    }
 }

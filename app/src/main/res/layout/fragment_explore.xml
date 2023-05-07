@@ -26,6 +26,7 @@
                     android:id="@+id/et_explore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/explore"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@+id/iv_search" />
@@ -47,8 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_search_bar"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:paddingStart="20dp"
+                android:textStyle="bold"
                 android:text="@string/choose_category"
                 android:textSize="20dp" />
 
@@ -76,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingStart="20dp"
+                android:textStyle="bold"
                 android:text="@string/choose_your_coffee"
                 android:textSize="20dp" />
 

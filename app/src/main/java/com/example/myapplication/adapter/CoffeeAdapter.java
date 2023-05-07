@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Coffee;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,32 +43,31 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Coffee coffee = mAryLst.get(position);
-        int itemType = holder.getItemViewType();
+            final Coffee coffee = mAryLst.get(position);
+            VHBody vhBody = (VHBody) holder;
+            vhBody.mTvContentTile.setText(coffee.getName());
 
-        VHBody vhBody = (VHBody) holder;
-        vhBody.mTvContentTile.setText(coffee.getTitle());
-        vhBody.mTvContentDescp.setText(coffee.getDescription());
-
-        if (coffee.isFavorite()) {
-            vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.pink), PorterDuff.Mode.SRC_IN);
-        } else {
-            vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.aqua), PorterDuff.Mode.SRC_IN);
-        }
-
-        vhBody.mRlBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallBack.onBodyClick(holder.getAdapterPosition());
+            if (coffee.isFavorite()) {
+                vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.pink), PorterDuff.Mode.SRC_IN);
+            } else {
+                vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.light_brown), PorterDuff.Mode.SRC_IN);
             }
-        });
-        vhBody.mImgContentFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallBack.onFavClick(holder.getAdapterPosition());
-            }
-        });
 
+            String imageUrl = coffee.getUrl();
+            Picasso.get().load(imageUrl).into(vhBody.mImgFavorite);
+            vhBody.mImgFavorite.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            vhBody.mRlBody.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallBack.onBodyClick(holder.getAdapterPosition());
+                }
+            });
+            vhBody.mImgContentFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallBack.onFavClick(holder.getAdapterPosition());
+                }
+            });
     }
 
     @Override
@@ -91,7 +91,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
     class VHBody extends ViewHolder {
 
 
-        private TextView mTvContentTile, mTvContentDescp;
+        private TextView mTvContentTile;
         private ImageView mImgFavorite, mImgContentFavorite;
         private RelativeLayout mRlBody;
 
@@ -99,7 +99,6 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
         public VHBody(View itemView) {
             super(itemView);
             mTvContentTile = itemView.findViewById(R.id.tv_content_title);
-            mTvContentDescp = itemView.findViewById(R.id.tv_content_descp);
             mImgFavorite = itemView.findViewById(R.id.iv_favorite);
             mImgContentFavorite = itemView.findViewById(R.id.iv_content_favorite);
             mRlBody = itemView.findViewById(R.id.rl_body);
@@ -110,6 +109,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
 
     public interface Listener {
         void onBodyClick(int iPosition);
+
         void onFavClick(int iPosition);
     }
 

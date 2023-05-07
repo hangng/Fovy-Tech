@@ -63,16 +63,15 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
             mDataHelper = new CoffeeDataHelper();
         }
 
-        ArrayList<Coffee> aryCoff = new ArrayList<>();
-
-        for (Coffee coffee : InfoUtil.getInstance().getCoffeeFav()) {
-            if (coffee.isFavorite()) {
-                aryCoff.add(new Coffee(coffee.getTitle(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite()));
+        if(InfoUtil.getInstance().getCoffeeFav() !=null){
+            ArrayList<Coffee> aryCoff = new ArrayList<>();
+            for (Coffee coffee : InfoUtil.getInstance().getCoffeeFav()) {
+                if (coffee.isFavorite()) {
+                    aryCoff.add(new Coffee(coffee.getName(), coffee.getTime(), "", coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl()));
+                }
             }
+            mDataHelper.setCoffeeFav(aryCoff);
         }
-
-        mDataHelper.setCoffeeFav(aryCoff);
-
 
     }
 
@@ -108,16 +107,23 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
 
     @Override
     public void onFavClick(int iPosition) {
-        Coffee coffee = mDataHelper.getCoffeeLst().get(iPosition);
+        Coffee coffee = mDataHelper.getCoffeeFav().get(iPosition);
         if (coffee.isFavorite()) {
             coffee.setFavorite(false);
         } else {
             coffee.setFavorite(true);
         }
 
+        for (Coffee coff : InfoUtil.getInstance().getCoffeeData().getCoffeeData()) {
+            if (coffee.getName().matches(coff.getName())) {
+                coff.setFavorite(coffee.isFavorite());
+            }
+        }
+
+        InfoUtil.getInstance().setCoffeeFav(InfoUtil.getInstance().getCoffeeData().getCoffeeData());
+        InfoUtil.getInstance().setCoffee(InfoUtil.getInstance().getCoffeeData().getCoffeeData());
+
         mAdpCoffee.notifyDataSetChanged();
-
-//        InfoUtil.getInstance().getCoffee
-
     }
+
 }

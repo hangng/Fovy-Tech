@@ -10,9 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.R;
-import com.example.myapplication.fragment.OnDataChangeListener;
 
-public class AcBase extends AppCompatActivity implements View.OnClickListener, OnDataChangeListener {
+public class AcBase extends AppCompatActivity implements View.OnClickListener {
     private static long mlLastClickTime;
     private static int miLastClickViewId;
     private final String INFOUTIL_TAG = "infoutil";
@@ -41,12 +40,9 @@ public class AcBase extends AppCompatActivity implements View.OnClickListener, O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if(savedInstanceState !=null){
             InfoUtil.setInfoUtil((InfoUtil) savedInstanceState.getSerializable(INFOUTIL_TAG));
         }
-
-
     }
 
     @Override
@@ -61,9 +57,4 @@ public class AcBase extends AppCompatActivity implements View.OnClickListener, O
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
-
-    @Override
-    public void onDataChanged(String newData) {
-
-    }
 }

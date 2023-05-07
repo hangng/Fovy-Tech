@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Coffee;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,17 +42,21 @@ public class CoffeeFavAdapter extends RecyclerView.Adapter<CoffeeFavAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Coffee coffee = mAryLst.get(position);
-        int itemType = holder.getItemViewType();
-
         VHBody vhBody = (VHBody) holder;
-        vhBody.mTvContentTile.setText(coffee.getTitle());
-        vhBody.mTvContentDescp.setText(coffee.getDescription());
+        vhBody.mTvContentTile.setText(coffee.getName());
 
         if (coffee.isFavorite()) {
             vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.pink), PorterDuff.Mode.SRC_IN);
         } else {
             vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.aqua), PorterDuff.Mode.SRC_IN);
         }
+
+
+        Log.i("TAG","checking coffee.getUrl() = " + coffee.getUrl());
+        String imageUrl = coffee.getUrl();
+        Picasso.get().load(imageUrl).into(vhBody.mImgFavorite);
+        vhBody.mImgFavorite.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
 
         vhBody.mRlBody.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +96,6 @@ public class CoffeeFavAdapter extends RecyclerView.Adapter<CoffeeFavAdapter.View
         public VHBody(View itemView) {
             super(itemView);
             mTvContentTile = itemView.findViewById(R.id.tv_content_title);
-            mTvContentDescp = itemView.findViewById(R.id.tv_content_descp);
             mImgFavorite = itemView.findViewById(R.id.iv_favorite);
             mImgContentFavorite = itemView.findViewById(R.id.iv_content_favorite);
             mRlBody = itemView.findViewById(R.id.rl_body);

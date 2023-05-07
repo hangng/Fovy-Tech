@@ -1,32 +1,40 @@
 package com.example.myapplication;
 
-import static com.example.myapplication.component.FrBase.isFastDoubleClick;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.component.AcBase;
+import com.example.myapplication.component.InfoUtil;
 import com.example.myapplication.fragment.ExploreFragment;
 import com.example.myapplication.fragment.FavoriteFragment;
-import com.example.myapplication.fragment.OnDataChangeListener;
+import com.example.myapplication.model.Coffee;
+import com.example.myapplication.model.CoffeeCategory;
+import com.example.myapplication.model.CoffeeData;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AcBase implements View.OnClickListener {
 
+    public static String SHARE_COFFEE_DATA = "SHARE_COFFEE_DATA";
     private TextView mTvExplore, mTvFavorite;
     private ImageView mIvExplore, mIvFavorite;
     private LinearLayout mLlExplore, mLlFavorite;
     private int lastfragmentId = -1;
+
+    private CoffeeData mCoffeeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +53,17 @@ public class MainActivity extends AcBase implements View.OnClickListener {
         mLlFavorite = findViewById(R.id.ll_favorite);
         mLlExplore.setOnClickListener(this);
         mLlFavorite.setOnClickListener(this);
-
-        replaceFragment(R.string.explore, ExploreFragment.newInstance());
+        readFromJson();
 
     }
 
     @Override
     protected void onResume() {
-
         if (lastfragmentId == -1 || lastfragmentId == 0) {
-            replaceFragment(R.string.explore, ExploreFragment.newInstance());
+            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
         } else if (lastfragmentId == 1) {
             replaceFragment(R.string.favorite, FavoriteFragment.newInstance());
         }
-
-
         super.onResume();
     }
 
@@ -72,7 +76,7 @@ public class MainActivity extends AcBase implements View.OnClickListener {
         if (v == mLlExplore) {
             lastfragmentId = 0;
             clearStack();
-            replaceFragment(R.string.explore, ExploreFragment.newInstance());
+            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
         } else if (v == mLlFavorite) {
             lastfragmentId = 1;
             clearStack();
@@ -84,10 +88,26 @@ public class MainActivity extends AcBase implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         clearStack();
-
         super.onBackPressed();
     }
 
 
+    private void readFromJson() {
+        AssetManager assetManager = getAssets();
+        Gson gson = new Gson();
+
+        try {
+            InputStream inputStream = assetManager.open("dummy_data.json");
+            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+            mCoffeeData = gson.fromJson(reader, CoffeeData.class);
+            Log.i("TAG", "checking url = " + mCoffeeData.getCoffeeData().get(1).getUrl());
+            InfoUtil.getInstance().setCoffeeData(mCoffeeData);
+            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 }

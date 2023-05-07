@@ -14,27 +14,10 @@ public class CoffeeDataHelper implements Serializable {
 
     private ArrayList<Coffee> mAryCoffee = new ArrayList<>();
     private ArrayList<Coffee> mAryCoffeeFav = new ArrayList<>();
-    private ArrayList<CoffeeCategory> mAryCoffeeCategory = new ArrayList<>();
-
-    public ArrayList<Coffee> getCoffeeLst() {
-        Log.i("TAG", "checking getCoffeeLst");
-        return mAryCoffee;
-    }
 
     public void setCoffeeLst(ArrayList<Coffee> aryCoffee) {
         this.mAryCoffee = aryCoffee;
     }
-
-    public ArrayList<CoffeeCategory> getCoffeeCategory() {
-
-        mAryCoffeeCategory.add(new CoffeeCategory("All", ""));
-        mAryCoffeeCategory.add(new CoffeeCategory("Espresso", ""));
-        mAryCoffeeCategory.add(new CoffeeCategory("Cappurchino", ""));
-        mAryCoffeeCategory.add(new CoffeeCategory("Teh", ""));
-
-        return mAryCoffeeCategory;
-    }
-
 
     public ArrayList<Coffee> getCoffeeFav() {
         return mAryCoffeeFav;

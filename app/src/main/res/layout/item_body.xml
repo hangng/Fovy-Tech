@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_body"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="20dp"
-    android:paddingBottom="20dp"
-    android:paddingTop="20dp"
-    android:id="@+id/rl_body"
-    tools:context=".MainActivity">
+    android:paddingEnd="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
@@ -23,20 +21,9 @@
             <ImageView
                 android:id="@+id/iv_favorite"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_favorite" />
+                android:layout_height="100dp" />
 
 
-
-            <TextView
-                android:id="@+id/tv_content_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_toStartOf="@+id/iv_content_favorite"
-                android:text="@string/perfect_way_to_start_your_day"
-                android:textSize="16dp" />
             <RelativeLayout
                 android:id="@+id/rl_content"
                 android:layout_width="match_parent"
@@ -44,22 +31,23 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/tv_content_descp"
+                    android:id="@+id/tv_content_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:padding="10dp"
                     android:layout_toStartOf="@+id/iv_content_favorite"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="@string/perfect_way_to_start_your_day"
                     android:textSize="16dp" />
 
                 <ImageView
-                    android:padding="10dp"
                     android:id="@+id/iv_content_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_favorite" />
+                    android:padding="10dp"
+                    android:src="@drawable/ic_fav" />
 
             </RelativeLayout>
         </LinearLayout>

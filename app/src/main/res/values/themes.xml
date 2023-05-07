@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Set the status bar color to transparent -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>

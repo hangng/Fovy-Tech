@@ -4,81 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll_navigation"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_paper_new" />
 
-
-    <LinearLayout
-        android:id="@+id/ll_navigation"
+    <TextView
+        android:id="@+id/tv_explore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/grey_brown"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/ll_explore"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/iv_explore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_explore" />
-
-            <TextView
-                android:id="@+id/tv_explore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="@string/explore"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_favorite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/iv_fav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_fav" />
-
-            <TextView
-                android:id="@+id/tv_fav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="@string/favorite"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
-
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/rounded_corner_fill"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/explore_now"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </RelativeLayout>

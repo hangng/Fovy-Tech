@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Coffee_Details;
 import com.example.myapplication.MainActivity;
+import com.example.myapplication.MenuActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CoffeeAdapter;
 import com.example.myapplication.adapter.CoffeeCategoryAdapter;
@@ -50,7 +51,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
     public static ExploreFragment newInstance(CoffeeData coffeeData) {
         Bundle bundle = new Bundle();
         ExploreFragment fragment = new ExploreFragment();
-        bundle.putSerializable(MainActivity.SHARE_COFFEE_DATA, coffeeData);
+        bundle.putSerializable(MenuActivity.SHARE_COFFEE_DATA, coffeeData);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -74,7 +75,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
         }
 
         if (bundle != null) {
-            mCoffeeData = (CoffeeData) bundle.getSerializable(MainActivity.SHARE_COFFEE_DATA);
+            mCoffeeData = (CoffeeData) bundle.getSerializable(MenuActivity.SHARE_COFFEE_DATA);
         }
 
 

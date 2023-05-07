@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +39,9 @@ public class Coffee_Details extends AppCompatActivity implements View.OnClickLis
         mVInstructions = findViewById(R.id.div_instructions);
         mTvIngredients.setOnClickListener(this);
         mTvInstructions.setOnClickListener(this);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
         initData();
     }
 

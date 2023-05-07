@@ -1,9 +1,13 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,85 +32,32 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AcBase implements View.OnClickListener {
 
-    public static String SHARE_COFFEE_DATA = "SHARE_COFFEE_DATA";
-    private TextView mTvExplore, mTvFavorite;
-    private ImageView mIvExplore, mIvFavorite;
-    private LinearLayout mLlExplore, mLlFavorite;
-    private int lastfragmentId = -1;
-
-    private CoffeeData mCoffeeData;
+    private TextView mTvExplore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initComponents();
-    }
-
-
-    private void initComponents() {
         mTvExplore = findViewById(R.id.tv_explore);
-        mTvFavorite = findViewById(R.id.tv_fav);
-        mIvFavorite = findViewById(R.id.iv_fav);
-        mIvExplore = findViewById(R.id.iv_explore);
-        mLlExplore = findViewById(R.id.ll_explore);
-        mLlFavorite = findViewById(R.id.ll_favorite);
-        mLlExplore.setOnClickListener(this);
-        mLlFavorite.setOnClickListener(this);
-        readFromJson();
+        mTvExplore.setOnClickListener(this);
 
-    }
-
-    @Override
-    protected void onResume() {
-        if (lastfragmentId == -1 || lastfragmentId == 0) {
-            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
-        } else if (lastfragmentId == 1) {
-            replaceFragment(R.string.favorite, FavoriteFragment.newInstance());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        super.onResume();
     }
+
 
     @Override
     public void onClick(View v) {
         if (isFastDoubleClick(v)) {
             return;
         }
-
-        if (v == mLlExplore) {
-            lastfragmentId = 0;
-            clearStack();
-            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
-        } else if (v == mLlFavorite) {
-            lastfragmentId = 1;
-            clearStack();
-            replaceFragment(R.string.favorite, FavoriteFragment.newInstance());
+        if (v == mTvExplore) {
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
         }
 
     }
 
-    @Override
-    public void onBackPressed() {
-        clearStack();
-        super.onBackPressed();
-    }
-
-
-    private void readFromJson() {
-        AssetManager assetManager = getAssets();
-        Gson gson = new Gson();
-
-        try {
-            InputStream inputStream = assetManager.open("dummy_data.json");
-            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-            mCoffeeData = gson.fromJson(reader, CoffeeData.class);
-            InfoUtil.getInstance().setCoffeeData(mCoffeeData);
-            replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 
 }

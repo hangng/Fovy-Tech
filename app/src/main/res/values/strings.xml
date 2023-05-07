@@ -11,5 +11,6 @@
     <string name="instructions">Instructions</string>
     <string name="serves">serves</string>
     <string name="my_favorite_recipe">My Favorite Recipe</string>
+    <string name="explore_now">Explore Now</string>
 
 </resources>

@@ -7,7 +7,7 @@ public class Coffee implements Serializable {
     private String name, time, description, ingredients, instructions, category_id, serve, url_link;
     private boolean mbFavorite;
 
-    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite, String imgUrl, String serve) {
+    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite, String imgUrl, String serve, String category_id) {
         this.name = title;
         this.time = time;
         this.description = description;
@@ -16,6 +16,7 @@ public class Coffee implements Serializable {
         this.mbFavorite = favorite;
         this.url_link = imgUrl;
         this.serve = serve;
+        this.category_id = serve;
     }
 
 

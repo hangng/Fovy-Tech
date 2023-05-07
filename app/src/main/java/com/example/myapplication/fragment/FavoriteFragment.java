@@ -64,7 +64,7 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
             ArrayList<Coffee> aryCoff = new ArrayList<>();
             for (Coffee coffee : InfoUtil.getInstance().getCoffeeFav()) {
                 if (coffee.isFavorite()) {
-                    aryCoff.add(new Coffee(coffee.getName(), coffee.getTime(), "", coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
+                    aryCoff.add(new Coffee(coffee.getName(), coffee.getTime(), "", coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
                 }
             }
             mDataHelper.setCoffeeFav(aryCoff);

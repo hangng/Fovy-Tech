@@ -48,7 +48,7 @@ public class CoffeeFavAdapter extends RecyclerView.Adapter<CoffeeFavAdapter.View
         if (coffee.isFavorite()) {
             vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.pink), PorterDuff.Mode.SRC_IN);
         } else {
-            vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.aqua), PorterDuff.Mode.SRC_IN);
+            vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.light_brown), PorterDuff.Mode.SRC_IN);
         }
 
         String imageUrl = coffee.getUrl();

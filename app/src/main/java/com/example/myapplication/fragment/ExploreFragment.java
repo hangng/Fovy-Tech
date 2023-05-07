@@ -122,21 +122,50 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
             int firstVisiblePosition = mLlMgr.findFirstVisibleItemPosition();
             int lastVisiblePosition = mLlMgr.findLastVisibleItemPosition();
 
+            ArrayList<Coffee> coffees = new ArrayList<>();
             if (InfoUtil.getInstance().getSelectItemPosition() > 0) {
                 mAdpCatCoffee.setSelectPosition(InfoUtil.getInstance().getSelectItemPosition());
 
-                ArrayList<Coffee> coffees = new ArrayList<>();
-                for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
-                    Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
-                    if (InfoUtil.getInstance().getSelectItemPosition() == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
-                        coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
+
+                if (InfoUtil.getInstance().getCoffeeFav().size() > 0) {
+
+                    for (int i = 0; i < InfoUtil.getInstance().getCoffeeFav().size(); i++) {
+                        Coffee coffee = InfoUtil.getInstance().getCoffeeFav().get(i);
+                        if (InfoUtil.getInstance().getSelectItemPosition() == Integer.parseInt(InfoUtil.getInstance().getCoffeeFav().get(i).getCatId())) {
+                            coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
+                        Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
+                        if (InfoUtil.getInstance().getSelectItemPosition() == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
+                            coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
+                        }
                     }
                 }
+
 
                 mRvHeader.smoothScrollToPosition(InfoUtil.getInstance().getSelectItemPosition());
                 mAdpCatCoffee.setSelectPosition(InfoUtil.getInstance().getSelectItemPosition());
                 mAryCoffee.addAll(coffees);
             } else {
+                if (InfoUtil.getInstance().getCoffeeFav().size() > 0) {
+
+                    for (int i = 0; i < InfoUtil.getInstance().getCoffeeFav().size(); i++) {
+                        Coffee coffee = InfoUtil.getInstance().getCoffeeFav().get(i);
+//                        if (InfoUtil.getInstance().getSelectItemPosition() == Integer. parseInt(InfoUtil.getInstance().getCoffeeFav().get(i).getCatId())) {
+                        coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
+//                        }
+                    }
+                } else {
+                    for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
+                        Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
+                        if (InfoUtil.getInstance().getSelectItemPosition() == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
+                            coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
+                        }
+                    }
+                }
+
                 if (0 <= firstVisiblePosition || 0 >= lastVisiblePosition) {
                     mLlMgr.smoothScrollToPosition(mRvHeader, new RecyclerView.State(), InfoUtil.getInstance().getSelectItemPosition());
                 }
@@ -193,23 +222,22 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
     @Override
     public void onHeaderClick(int iPosition) {
         mAryCoffee.clear();
+        ArrayList<Coffee> coffees = new ArrayList<>();
         if (iPosition == 0) {
             mAryCoffee.addAll(mCoffeeData.getCoffeeData());
             mAdpCatCoffee.setSelectPosition(0);
             InfoUtil.getInstance().setSelectItemPosition(0);
         } else {
-            ArrayList<Coffee> coffees = new ArrayList<>();
             for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
                 Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
                 if (iPosition == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
-                    coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
+                    coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
                 }
             }
 
             InfoUtil.getInstance().setSelectItemPosition(iPosition);
             mAdpCatCoffee.setSelectPosition(iPosition);
             mAryCoffee.addAll(coffees);
-
         }
 
         mAdpCatCoffee.notifyDataSetChanged();
@@ -241,7 +269,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
                 for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
                     Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
                     if (position == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
-                        aryCoffeeLst.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
+                        aryCoffeeLst.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe(), coffee.getCatId()));
                     }
                 }
 

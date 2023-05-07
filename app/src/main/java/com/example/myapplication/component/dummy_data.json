@@ -1,0 +1,75 @@
+{
+  "coffee_category": [
+    {
+      "id": "1",
+      "name": "Espresso"
+    },
+    {
+      "id": "2",
+      "name": "Cappuccino"
+    },
+    {
+      "id": "3",
+      "name": "Latte"
+    },
+    {
+      "id": "4",
+      "name": "Americano"
+    },
+    {
+      "id": "5",
+      "name": "Mocha"
+    },
+    {
+      "id": "6",
+      "name": "Macchiato"
+    }
+  ],
+  "coffee_data": [
+    {
+      "id": "1",
+      "category_id": "1",
+      "name": "Espresso Shot",
+      "time": "5 min",
+      "ingredients": "1 shot of espresso",
+      "instructions": "Brew a shot of espresso and enjoy!",
+      "description": "A classic Italian coffee that's simple, strong and perfect for a quick pick-me-up."
+    },
+    {
+      "id": "2",
+      "category_id": "2",
+      "name": "Cappuccino",
+      "time": "10 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp sugar",
+      "instructions": "Brew a shot of espresso, heat the milk and sugar in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A delicious and creamy Italian coffee that's perfect for a lazy morning or afternoon treat."
+    },
+    {
+      "id": "3",
+      "category_id": "3",
+      "name": "Vanilla Latte",
+      "time": "15 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp vanilla syrup",
+      "instructions": "Brew a shot of espresso, heat the milk and vanilla syrup in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A sweet and creamy coffee that's perfect for anyone with a sweet tooth. The vanilla flavor adds a delicious twist to the classic latte."
+    },
+    {
+      "id": "4",
+      "category_id": "4",
+      "name": "Americano",
+      "time": "5 min",
+      "ingredients": "1 shot of espresso, hot water",
+      "instructions": "Brew a shot of espresso and pour it into a cup, add hot water and enjoy.",
+      "description": "A simple coffee that's perfect for anyone who loves the taste of espresso but wants a milder flavor. The hot water dilutes the espresso, creating a smooth and delicious coffee."
+    },
+    {
+      "id": "5",
+      "category_id": "5",
+      "name": "Mocha",
+      "time": "15 min",
+      "ingredients": "1 shot of espresso, 1 cup of milk, 1 tbsp cocoa powder, 1 tbsp sugar",
+      "instructions": "Brew a shot of espresso, heat the milk, cocoa powder and sugar in a pan until it starts to steam, froth the milk and pour it over the espresso.",
+      "description": "A decadent and indulgent coffee that's perfect for anyone who loves chocolate. The rich and creamy mocha is the perfect treat for a cold winter's day."
+    }
+  ]
+}

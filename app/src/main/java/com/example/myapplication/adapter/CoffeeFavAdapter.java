@@ -51,8 +51,6 @@ public class CoffeeFavAdapter extends RecyclerView.Adapter<CoffeeFavAdapter.View
             vhBody.mImgContentFavorite.setColorFilter(mContext.getColor(R.color.aqua), PorterDuff.Mode.SRC_IN);
         }
 
-
-        Log.i("TAG","checking coffee.getUrl() = " + coffee.getUrl());
         String imageUrl = coffee.getUrl();
         Picasso.get().load(imageUrl).into(vhBody.mImgFavorite);
         vhBody.mImgFavorite.setScaleType(ImageView.ScaleType.CENTER_CROP);

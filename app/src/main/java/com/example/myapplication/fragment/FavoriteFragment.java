@@ -34,8 +34,6 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
     private CoffeeFavAdapter mAdpCoffee;
     private GridLayoutManager mGlMgr;
     private CoffeeDataHelper mDataHelper;
-    private ArrayList<CoffeeCategory> mAryCoffeeCategory = new ArrayList<>();
-
 
     public static FavoriteFragment newInstance() {
         Bundle args = new Bundle();
@@ -43,7 +41,6 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
         fragment.setArguments(args);
         return new FavoriteFragment();
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,12 +64,11 @@ public class FavoriteFragment extends FrBase implements CoffeeAdapter.Listener, 
             ArrayList<Coffee> aryCoff = new ArrayList<>();
             for (Coffee coffee : InfoUtil.getInstance().getCoffeeFav()) {
                 if (coffee.isFavorite()) {
-                    aryCoff.add(new Coffee(coffee.getName(), coffee.getTime(), "", coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl()));
+                    aryCoff.add(new Coffee(coffee.getName(), coffee.getTime(), "", coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
                 }
             }
             mDataHelper.setCoffeeFav(aryCoff);
         }
-
     }
 
 

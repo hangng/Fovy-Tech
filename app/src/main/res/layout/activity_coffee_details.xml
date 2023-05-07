@@ -41,6 +41,9 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/brown"
                 android:text="@string/ingredients" />
 
             <LinearLayout
@@ -49,19 +52,53 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_time"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/ingredients" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_serve"
+                    <ImageView
+                        android:id="@+id/iv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_time" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_time"
+                        android:text="@string/ingredients" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/instructions" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_serve"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_coffee" />
+
+                    <TextView
+                        android:id="@+id/tv_serve"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_serve"
+                        android:text="@string/instructions" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -105,9 +142,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textStyle="bold"
                         android:text="@string/instructions"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                     <View
                         android:id="@+id/div_instructions"

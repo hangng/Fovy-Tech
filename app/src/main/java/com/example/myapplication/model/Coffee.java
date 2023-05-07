@@ -6,14 +6,8 @@ public class Coffee implements Serializable {
     private static final long serialVersionUID = -4763567154698548274L;
     private String name, time, description, ingredients, instructions, category_id, serve, url_link;
     private boolean mbFavorite;
-    private int miSectionId;
 
-
-    public Coffee() {
-
-    }
-
-    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite, String imgUrl) {
+    public Coffee(String title, String time, String description, String ingredients, String instructions, boolean favorite, String imgUrl, String serve) {
         this.name = title;
         this.time = time;
         this.description = description;
@@ -21,11 +15,9 @@ public class Coffee implements Serializable {
         this.instructions = instructions;
         this.mbFavorite = favorite;
         this.url_link = imgUrl;
+        this.serve = serve;
     }
 
-    public int getSectionId() {
-        return miSectionId;
-    }
 
     public String getCatId() {
         return category_id;

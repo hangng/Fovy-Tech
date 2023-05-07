@@ -51,6 +51,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingStart="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/brown"
                 android:text="@string/choose_category"
                 android:textSize="20dp" />
 
@@ -78,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingStart="20dp"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:text="@string/choose_your_coffee"
                 android:textSize="20dp" />

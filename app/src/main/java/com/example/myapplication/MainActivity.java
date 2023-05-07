@@ -100,7 +100,6 @@ public class MainActivity extends AcBase implements View.OnClickListener {
             InputStream inputStream = assetManager.open("dummy_data.json");
             JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
             mCoffeeData = gson.fromJson(reader, CoffeeData.class);
-            Log.i("TAG", "checking url = " + mCoffeeData.getCoffeeData().get(1).getUrl());
             InfoUtil.getInstance().setCoffeeData(mCoffeeData);
             replaceFragment(R.string.explore, ExploreFragment.newInstance(mCoffeeData));
         } catch (IOException e) {

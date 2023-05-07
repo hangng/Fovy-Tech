@@ -35,13 +35,11 @@ import java.util.ArrayList;
 
 public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, CoffeeCategoryAdapter.Listener, View.OnClickListener {
 
-    private static final String SAVE_DATA_STATE = "SAVE_DATA_STATE";
     private RecyclerView mRvHeader, mRvBody;
     private CoffeeAdapter mAdpCoffee;
     private CoffeeCategoryAdapter mAdpCatCoffee;
     private LinearLayoutManager mLlMgr;
     private GridLayoutManager mGlMgr;
-    private CoffeeDataHelper mDataHelper;
     private ArrayList<Coffee> mAryCoffee = new ArrayList<>();
     private ArrayList<CoffeeCategory> mAryCoffeeCat = new ArrayList<>();
     private CoffeeData mCoffeeData;
@@ -60,7 +58,6 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putSerializable(SAVE_DATA_STATE, mDataHelper);
         super.onSaveInstanceState(outState);
     }
 
@@ -77,14 +74,9 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
         }
 
         if (bundle != null) {
-            mDataHelper = (CoffeeDataHelper) bundle.getSerializable(SAVE_DATA_STATE);
             mCoffeeData = (CoffeeData) bundle.getSerializable(MainActivity.SHARE_COFFEE_DATA);
         }
 
-
-        if (mDataHelper == null) {
-            mDataHelper = new CoffeeDataHelper();
-        }
 
     }
 
@@ -96,9 +88,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
 
         if (InfoUtil.getInstance().getCoffeeFav() == null) {
             mAryCoffee.addAll(InfoUtil.getInstance().getCoffeeData().getCoffeeData());
-            mDataHelper.setCoffeeLst(InfoUtil.getInstance().getCoffeeData().getCoffeeData());
         } else {
-            mDataHelper.setCoffeeLst(InfoUtil.getInstance().getCoffeeFav());
             mAryCoffee.addAll(InfoUtil.getInstance().getCoffeeFav());
         }
 
@@ -124,9 +114,40 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
         mRvHeader.setLayoutManager(mLlMgr);
         mRvHeader.setAdapter(mAdpCatCoffee);
 
-        mAdpCatCoffee.notifyDataSetChanged();
-        mAdpCoffee.notifyDataSetChanged();
         mIvSearch.setOnClickListener(this);
+
+        if (InfoUtil.getInstance().getSelectItemPosition() > -1) {
+            mAryCoffee.clear();
+            int firstVisiblePosition = mLlMgr.findFirstVisibleItemPosition();
+            int lastVisiblePosition = mLlMgr.findLastVisibleItemPosition();
+
+            if (InfoUtil.getInstance().getSelectItemPosition() > 0) {
+                mAdpCatCoffee.setSelectPosition(InfoUtil.getInstance().getSelectItemPosition());
+
+                ArrayList<Coffee> coffees = new ArrayList<>();
+                for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
+                    Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
+                    if (InfoUtil.getInstance().getSelectItemPosition() == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
+                        coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
+                    }
+                }
+
+                mRvHeader.smoothScrollToPosition(InfoUtil.getInstance().getSelectItemPosition());
+                mAdpCatCoffee.setSelectPosition(InfoUtil.getInstance().getSelectItemPosition());
+                mAryCoffee.addAll(coffees);
+            } else {
+                if (0 <= firstVisiblePosition || 0 >= lastVisiblePosition) {
+                    mLlMgr.smoothScrollToPosition(mRvHeader, new RecyclerView.State(), InfoUtil.getInstance().getSelectItemPosition());
+                }
+                mAdpCatCoffee.setSelectPosition(0);
+                mAryCoffee.addAll(InfoUtil.getInstance().getCoffeeFav());
+            }
+
+            mAdpCatCoffee.notifyDataSetChanged();
+            mAdpCoffee.notifyDataSetChanged();
+
+        }
+
 
         return mRootView;
     }
@@ -174,17 +195,18 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
         if (iPosition == 0) {
             mAryCoffee.addAll(mCoffeeData.getCoffeeData());
             mAdpCatCoffee.setSelectPosition(0);
+            InfoUtil.getInstance().setSelectItemPosition(0);
         } else {
-            Log.i("TAG", "checking InfoUtil.getInstance().getCoffeeData().getCoffeeData().size() = " + InfoUtil.getInstance().getCoffeeData().getCoffeeData().size());
             ArrayList<Coffee> coffees = new ArrayList<>();
             for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
                 Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
                 if (iPosition == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
-                    coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl()));
+                    coffees.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
                 }
             }
+
+            InfoUtil.getInstance().setSelectItemPosition(iPosition);
             mAdpCatCoffee.setSelectPosition(iPosition);
-            mDataHelper.setCoffeeLst(coffees);
             mAryCoffee.addAll(coffees);
 
         }
@@ -208,6 +230,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
                 mAryCoffee.addAll(InfoUtil.getInstance().getCoffeeData().getCoffeeData());
                 mRvHeader.smoothScrollToPosition(0);
                 mAdpCatCoffee.setSelectPosition(0);
+                InfoUtil.getInstance().setSelectItemPosition(0);
             } else {
                 for (int i = 1; i < mAryCoffeeCat.size(); i++) {
                     if (mAryCoffeeCat.get(i).getName().toLowerCase().contains(name.toLowerCase())) {
@@ -217,7 +240,7 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
                 for (int i = 0; i < InfoUtil.getInstance().getCoffeeData().getCoffeeData().size(); i++) {
                     Coffee coffee = InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i);
                     if (position == Integer.parseInt(InfoUtil.getInstance().getCoffeeData().getCoffeeData().get(i).getCatId())) {
-                        aryCoffeeLst.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl()));
+                        aryCoffeeLst.add(new Coffee(coffee.getName(), coffee.getTime(), coffee.getDescription(), coffee.getIngredients(), coffee.getInstructions(), coffee.isFavorite(), coffee.getUrl(), coffee.getServe()));
                     }
                 }
 
@@ -225,6 +248,8 @@ public class ExploreFragment extends FrBase implements CoffeeAdapter.Listener, C
                 if (position <= firstVisiblePosition || position >= lastVisiblePosition) {
                     mLlMgr.smoothScrollToPosition(mRvHeader, new RecyclerView.State(), position);
                 }
+
+                InfoUtil.getInstance().setSelectItemPosition(position);
                 mRvHeader.smoothScrollToPosition(position);
                 mAdpCatCoffee.setSelectPosition(position);
                 mAryCoffee.clear();

@@ -15,10 +15,6 @@ public class CoffeeDataHelper implements Serializable {
     private ArrayList<Coffee> mAryCoffee = new ArrayList<>();
     private ArrayList<Coffee> mAryCoffeeFav = new ArrayList<>();
 
-    public void setCoffeeLst(ArrayList<Coffee> aryCoffee) {
-        this.mAryCoffee = aryCoffee;
-    }
-
     public ArrayList<Coffee> getCoffeeFav() {
         return mAryCoffeeFav;
     }

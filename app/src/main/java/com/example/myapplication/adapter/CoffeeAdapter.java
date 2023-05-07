@@ -71,11 +71,6 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return mAryLst.get(position).getSectionId();
-    }
-
-    @Override
     public int getItemCount() {
         return mAryLst.size();
     }

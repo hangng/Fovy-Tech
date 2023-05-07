@@ -15,6 +15,7 @@ public class InfoUtil implements Serializable {
 
     private CoffeeData mCoffeeData;
     private Coffee mCoffee;
+    private int mSelectItemPosition=-1;
 
     public static InfoUtil getInstance() {
         if (mInfoUtil == null) {
@@ -59,5 +60,13 @@ public class InfoUtil implements Serializable {
 
     public void setSelectCoffee(Coffee mCoffee) {
         this.mCoffee = mCoffee;
+    }
+
+    public int getSelectItemPosition() {
+        return mSelectItemPosition;
+    }
+
+    public void setSelectItemPosition(int mSelectPosition) {
+        this.mSelectItemPosition = mSelectPosition;
     }
 }
